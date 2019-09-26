@@ -5,6 +5,7 @@ const path = require("path");
 const initMongo = require('./config/mongo');
 const bodyParser = require('body-parser')
 const redis = require('redis');
+var url = require('url');
 const REDIS_PORT = process.env.REDIS_PORT;
 const REDIS_HOST = process.env.REDIS_HOST;
 // const redisConf = {
@@ -23,9 +24,11 @@ const REDIS_HOST = process.env.REDIS_HOST;
 // host : redisHost,
 // authPass: redisAuth
 // });
-
-client = redis.createClient(process.env.REDIS_HOST, { auth_pass: 'root' });
-console.log(client.options);
+var redisURL = url.parse(process.env.REDIS_HOST);
+var client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
+client.auth("root");
+// client = redis.createClient(process.env.REDIS_HOST, { auth_pass: 'root' });
+// console.log(client.options);
 // client.auth("root",function(err, response){
 // if(err){
 // throw err;
