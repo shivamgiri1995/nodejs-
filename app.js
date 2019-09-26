@@ -28,7 +28,7 @@ var redisURL = url.parse(process.env.REDIS_HOST);
 var client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
 client.auth("root");
 // client = redis.createClient(process.env.REDIS_HOST, { auth_pass: 'root' });
-// console.log(client.options);
+console.log(client.options);
 // client.auth("root",function(err, response){
 // if(err){
 // throw err;
