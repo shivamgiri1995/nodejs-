@@ -25,7 +25,7 @@ const REDIS_HOST = process.env.REDIS_HOST;
 // });
 
 client = redis.createClient(process.env.REDIS_HOST, { auth_pass: 'root' });
-
+console.log(client.options);
 // client.auth("root",function(err, response){
 // if(err){
 // throw err;
